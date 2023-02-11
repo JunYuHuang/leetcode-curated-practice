@@ -2,7 +2,7 @@
 
 ## Solution 1: DFS recursive
 
-- O(E + V) time and O(E + V) space class solution
+- O(V + E) time and O(V + E) space class solution
 - return null if node is null
 - hashmap of (node) -> nodeCopy pairs
 - helper recursive function dfs(node) -> Node:
