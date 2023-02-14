@@ -17,7 +17,17 @@
   - call itself on curr's R node
 - return res
 
-<!-- ## Solution 2: DFS iterative (NeetCode's modified)
+## Solution 2: DFS iterative (NeetCode's)
 
 - O(N) time and O(N) space class solution
-- empty res array -->
+- simulate recursive / implicit call stack using explicit stack
+- optional: return empty array if null root
+- empty res array, empty stack array, curr Node pointer pointing to root
+- while curr is not null or while stack is non empty
+  - while curr is not null
+    - push curr to stack
+    - curr = curr's L node
+  - curr = pop from stack
+  - push its value to res
+  - curr = curr's R node
+- return res
