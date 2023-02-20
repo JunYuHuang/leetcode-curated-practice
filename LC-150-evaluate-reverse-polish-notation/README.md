@@ -56,7 +56,7 @@ Constraints:
 
 ## Solution 1: stack
 
-- O(N) time and O(N) space class solution
+- O(N) time and O(N) space solution
 - stack / array of ints
 - hashmap of operator -> lambda(x, y) that returns eval res
   - for Py3, return int(x / y) for division function

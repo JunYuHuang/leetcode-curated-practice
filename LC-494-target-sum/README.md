@@ -2,7 +2,7 @@
 
 ## Solution 1: DFS recursive brute force (TLE)
 
-- O(2^N) time and O(2^N) space class solution
+- O(2^N) time and O(2^N) space solution
 - res int initialised to 0
 - helper recursive function dfs(curr, i)
   - if i == last position + 1 (out of bounds)
@@ -15,7 +15,7 @@
 
 ## Solution 2: top-down / recursive DP (NeetCode's modified)
 
-- O(NT) time and O(NT) space class solution where T = sum(nums)
+- O(NT) time and O(NT) space solution where T = sum(nums)
 - same approach as solution 1 but
   - with memoization
   - no res int variable

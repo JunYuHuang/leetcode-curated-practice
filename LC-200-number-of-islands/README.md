@@ -2,7 +2,7 @@
 
 ## Solution 1: DFS recursive
 
-- O(M \* N) time and O(M \* N) space class solution
+- O(M \* N) time and O(M \* N) space solution
 - initialise visit set, res int to 0
 - helper recursive function dfs(r, c):
   - if (r, c) is out of bounds or visited or a "0": return

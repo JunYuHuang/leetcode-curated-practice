@@ -6,7 +6,7 @@
 
 ## Solution 1: DFS recursive
 
-- O(N) time and O(N) space class solution
+- O(N) time and O(N) space solution
 - optional: return empty array if null root
 - empty res array
 - helper recursive function inorder(curr)
@@ -19,7 +19,7 @@
 
 ## Solution 2: DFS iterative (NeetCode's)
 
-- O(N) time and O(N) space class solution
+- O(N) time and O(N) space solution
 - simulate recursive / implicit call stack using explicit stack
 - optional: return empty array if null root
 - empty res array, empty stack array, curr Node pointer pointing to root

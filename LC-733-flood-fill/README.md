@@ -2,7 +2,7 @@
 
 ## Solution 1: BFS iterative
 
-- O(MN) time and O(MN) space class solution
+- O(MN) time and O(MN) space solution
 - return image if start cell has same color as given color
 - initialise empty visit set (of (r, c)), ROWS, COLS, queue with starting cell
 - startColor = starting cell's original color
@@ -18,7 +18,7 @@
 
 ## Solution 2: DFS iterative
 
-- O(MN) time and O(MN) space class solution
+- O(MN) time and O(MN) space solution
 - same approach as BFS iterative but
   - replace queue with stack
     - optional: use array / list instead of deque for stack
@@ -26,7 +26,7 @@
 
 ## Solution 3: DFS recursive
 
-- O(MN) time and O(MN) space class solution
+- O(MN) time and O(MN) space solution
 - same approach as DFS iterative but
   - move stack processing logic into a non-pure recursive helper function dfs()
   - for dfs(r, c)
