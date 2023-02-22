@@ -13,7 +13,7 @@
   - if curr is null, return
   - push curr's value to res
   - dfs(curr.L, res)
-  - dfs(curr.L, res)
+  - dfs(curr.R, res)
 - dfs(root)
 - return res
 
