@@ -10,7 +10,6 @@
   - uni-value subtree = all nodes of the subtree have the same value
     - means the count of uni-values trees only counts towards nodes that have the same value
     - only count most dominant or max count of nodes with same value?
-    
 - PEDAC: Examples
   - uni-value tree examples:
       - leaf nodes: non-null node with no (L or R) children
