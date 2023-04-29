@@ -13,7 +13,7 @@
 
 ## Solution 1: recursive backtracking (NeetCode's modded)
 
-- O((M * N)^2)? T & and O((M * N)^2) S solution
+- O(M * N * 4^K) T and O(M * N * 4^K) S solution
 - initialise ROWS = len(board), COLS = len(board[0])
 - if size of `word` < `board`'s area, return false
 - initialise empty visit set
