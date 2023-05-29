@@ -22,7 +22,7 @@ Example 1:
 ```
 Input: tokens = ["2","1","+","3","*"]
 Output: 9
-Explanation: ((2 + 1) \* 3) = 9
+Explanation: ((2 + 1) * 3) = 9
 ```
 
 Example 2:
@@ -57,14 +57,15 @@ Constraints:
 ## Solution 1: stack
 
 - O(N) time and O(N) space solution
-- stack / array of ints
-- hashmap of operator -> lambda(x, y) that returns eval res
-  - for Py3, return int(x / y) for division function
-- for char in str
-  - if char is not in hashmap (char is int)
-    - push char to stack
-  - else (char is operator)
-    - optional = check if stack has 2+ el
-    - pop last 2 ints from stack
-    - push result of eval of last 2 ints with operator using hashmap
-- return stack[0] casted as int
+- initialise variables
+  - `nums`: empty int list
+  - `opToFn`: hashmap that maps each of the 4 arithmetic operators to a lambda function that takes in `(l, r)` ints and returns the evaluated result
+- loop thru every char `c` in string `tokens`
+  - if `c` is a int (not in `opToFn` dict)
+    - push `c` converted to an int to `nums`
+  - else if `nums` has 2+ ints
+    - `left` = pop from `nums`
+    - `right` = pop from `nums`
+    - `res` = `opToFn[c](left, right)`
+    - push `res` to `nums`
+- return `nums[0]`
