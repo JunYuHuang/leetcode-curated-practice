@@ -1,18 +1,21 @@
-# O(4^N / sqrt(N)) T and O(4^N / sqrt(N)) S solution (NeetCode's modded)
+# O(4^N / sqrt(N)) T and O(4^N / sqrt(N)) S recursive backtracking solution (NeetCode's modded)
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         res = []
-        def backtrack(curr, openN, closedN):
-            if len(curr) == n * 2:
-                res.append("".join(curr))
+
+        def backtrack(comb, openN, closedN):
+            if openN == n and closedN == n:
+                res.append("".join(comb))
                 return
             if openN < n:
-                curr.append("(")
-                backtrack(curr, openN + 1, closedN)
-                curr.pop()
+                comb.append("(")
+                backtrack(comb, openN + 1, closedN)
+                comb.pop()
             if closedN < openN:
-                curr.append(")")
-                backtrack(curr, openN, closedN + 1)
-                curr.pop()
+                comb.append(")")
+                backtrack(comb, openN, closedN + 1)
+                comb.pop()
+
         backtrack([], 0, 0)
+
         return res
