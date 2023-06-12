@@ -25,6 +25,7 @@
 - initialise empty `res` array
 - sort array `nums`
 - loop thru each index `i` in `nums`
+  - break out of loop if `nums[i]` is positive b/c we know the window defined by `l` and `r` will never be negative
   - if `i` > 0 and `nums[i]` is the same as the prev el `nums[i - 1]`
     - continue to next iteration
   - initialise pointers for `nums`
