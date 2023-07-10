@@ -3,14 +3,14 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-# My O(N) time and O(1) space iterative solution
+# O(N) T and O(1) S iterative linked list solution
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # if not head or not head.next: return head
-        prev, curr = None, head
+        prev = None
+        curr = head
         while curr:
-            nxt = curr.next # save ref to next node
-            curr.next = prev # breaks the list in 2
+            nxt = curr.next
+            curr.next = prev
             prev = curr
             curr = nxt
         return prev
