@@ -36,12 +36,13 @@
 
 ## Solution 2: recursive
 
-- O(N) time and O(N) space solution
+- O(N) T and O(N) S solution
 - same approach as solution 1 iterative but
   - replace while loop with recursive helper function
-- helper recursive function rev(prev, curr)
-  - if curr is null, return prev
-  - nxt = curr.next
-  - curr.next = prev
-  - return (curr, nxt)
-- return rev(null, head)
+- `reverse(prev, curr)` helper function
+  - if `curr` is null,
+    - return `prev`
+  - `nxt` = `curr.next`
+  - `curr.next` = `prev`
+  - return `reverse(curr, nxt)`
+- return `reverse(null, head)`
