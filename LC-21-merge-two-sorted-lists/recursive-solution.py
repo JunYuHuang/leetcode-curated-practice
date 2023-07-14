@@ -3,7 +3,7 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-# O(N) T and O(N) S recursive solution (OldCodingFarmer's modded)
+# O(M + N) T and O(M + N) S recursive solution (OldCodingFarmer's modded)
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         if not list1 or not list2:

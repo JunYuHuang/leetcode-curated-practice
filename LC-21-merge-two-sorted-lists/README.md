@@ -29,7 +29,7 @@
 
 ## Solution 1: iterative
 
-- O(N) T and O(1) S solution
+- O(M + N) T and O(1) S solution
 - optional guard clauses
   - return null if both `list1` and `list2` are null
   - return `list1` if `list2` is null
@@ -58,14 +58,14 @@
 
 ## Solution 2: iterative (NeetCode's modded)
 
-- O(N) time and O(1) space solution
+- O(M + N) T and O(1) S solution
 - same approach as solution 1 iterative but
   - use less pointers and have no guard clauses
   - use less memory due to new list that points directly to the nodes in the original 2 lists instead of creating new nodes in memory
 
 ## Solution 3: recursive (OldCodingFarmer's modded)
 
-- O(N) time and O(N) space solution
+- O(M + N) T and O(M + N) S solution
 - follows recurrence relation
   - `list1[0] + merge(list1[1:], list2) for list1[0] < list2[0]`
   - `list2[0] + merge(list1, list2[1:]) otherwise`

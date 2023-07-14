@@ -3,7 +3,7 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-# O(N) T and O(1) S iterative linked list solution
+# O(M + N) T and O(1) S iterative linked list solution
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         dummy = ListNode()
