@@ -3,11 +3,19 @@
 ## General Notes
 
 - PEDAC: Problem
-  - input: 
-    - `list1`: head of list that may be null
-    - `list2`: head of list that may be null
-  - output: head ListNode of sorted merged list that may be null
-  - both lists are sorted in non-decreasing order
+  - input:
+    - `list1`: head `ListNode` of list that may be null
+      - of size in range \[0, 50]
+      - of nodes whose values are in range \[-100, 100]
+    - `list2`: head `ListNode` of list that may be null
+      - of size in range \[0, 50]
+      - of nodes whose values are in range \[-100, 100]
+  - output:
+    - `res`: head `ListNode`` of sorted merged list
+      - of size in range \[0, 100]
+      - of nodes whose values are in range \[-100, 100]
+      - should be sorted in non-decreasing order
+  - both `list1` and `list2` are sorted in non-decreasing order
 
 - PEDAC: Examples
   - null `list1`, `list2` = \[0, 1, 2]
@@ -19,27 +27,34 @@
   - `list1` is longer than `list2`
     - once reached end of `list2`, append rest of `list1` to res
 
-## Solution 1: iterative 
+## Solution 1: iterative
 
-- O(N) time and O(N) space solution
-- if both heads of `list1` and `list2` are null, return null
-- if head of `list1` is null, return head of `list2`
-- if head of `list2` is null, return head of `list1`
+- O(N) T and O(1) S solution
+- optional guard clauses
+  - return null if both `list1` and `list2` are null
+  - return `list1` if `list2` is null
+  - return `list2` if `list1` is null
 - initialise variables
-  - dummy node
-  - curr node pointer that points to dummy
-  - head1 and head2 that point to heads of each list respectively
-- while both head1 and head2 are not null
-  - if head1.val < head.2val
-    - append new node created from head1.val to curr.next
-    - point to next node in `list1`
-  - else
-    - append new node created from head2.val to curr.next
-    - point to next node in `list2`
-  - curr = curr.next
-- if head1 is not null, append rest of `list1` to end of curr
-- if head2 is not null, append rest of `list2` to end of curr
-- return dummy.next
+  - `dummy`: `ListNode` instance that initially points to null
+  - `curr`: `ListNode` pointer that initially points to `dummy`
+- while `list1` and `list2`:
+  - if `list1.val` < `list2.val`:
+    - set `list1`'s current node as the next node in the resulting list and update the pointers
+    - `curr.next` = `list1`
+    - `curr` = `list1`
+    - `list1` = `list1.next`
+  - else (`list1.val` >= `list2.val`):
+    - set `list2`'s current node as the next node in the resulting list and update the pointers
+    - `curr.next` = `list2`
+    - `curr` = `list2`
+    - `list2` = `list2.next`
+- if `list1` is null:
+  - append the rest of `list2` to the resulting list
+  - `curr.next` = `list2`
+- if `list2` is null:
+  - append the rest of `list1` to the resulting list
+  - `curr.next` = `list1`
+- return `dummy.next`
 
 ## Solution 2: iterative (NeetCode's modded)
 
