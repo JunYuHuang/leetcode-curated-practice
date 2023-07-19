@@ -58,7 +58,17 @@
       - `curr2.next` = `next2`
 - return `dummy.next`
 
-<!-- ## Solution 2: iterative two-pointer (NeetCode's modded)
+## Solution 2: iterative two-pointer (NeetCode's modded)
 
 - O(N) T and O(1) space solution
-- TODO -->
+- same general approach as solution 1 with some differences
+  - no dummy node
+  - finding the mid node
+    - `slow` pointer = `head`, `fast` pointer = `head.next`
+    - mid node of original list is the `list.size // 2 - 1` ith node in a 1-indexed based list i.e. `slow.next` when the loop exists
+    - split list by setting `slow.next` to null
+  - reversing the 2nd half of the list is done inside the original method (no helper function)
+  - when merging the two lists
+    - no special case handling since in this case the first half of the split list is always the longer list in an odd-sized list
+    - only need to loop while second reversed half head pointer is not null
+  - doesn't return anything because problem doesn't require returning anything; only need to modify list in-place
