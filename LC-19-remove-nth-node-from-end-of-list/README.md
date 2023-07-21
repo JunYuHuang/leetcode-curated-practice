@@ -47,3 +47,24 @@
   - `prev.next` = `nxt`
   - `curr.next` = null
 - return `dummy.next`
+
+## Solution 2: two pointers 1-pass (NeetCode's modded)
+
+- O(N) T and O(1) S solution
+- initialize variables
+  - `dummy`: `ListNode` node that points to dummy with some arbitrary value
+  - `left`: node pointer that points initially to `dummy`
+  - `right`: node pointer that points initally to `head`
+- move `right` until it points to the 1-indexed `n`th node from the start of the linked list (that starts with node `head`)
+  - while `n` > 0 and `right` is not null:
+    - `right` = `right.next`
+    - `n--`
+- move the pointers `left` and `right` while maintaining their offset difference until `right` reaches the end of the list (is null)
+  - while `right`:
+    - `left` = `left.next`
+    - `right` = `right.next`
+- delete the `n`th node
+  - `deleted` = `left.next`
+  - `left.next` = `deleted.next`
+  - `deleted.next` = null (optional)
+- return `dummy.next`
