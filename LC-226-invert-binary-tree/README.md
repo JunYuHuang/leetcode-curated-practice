@@ -38,3 +38,15 @@
     - `curr.left` = `curr.right`
     - `curr.right` = `temp`
 - return `root`
+
+## Solution 2: DFS recursive
+
+- O(N) T and O(N) S solution
+- make function itself (`invertTree()`) recursive
+- return null or `root` if `root` is null
+- `temp` = `root.left`
+- `root.left` = `root.right`
+- `root.right` = `temp`
+- `invertTree(root.left)`
+- `invertTree(root.right)`
+- return `root`
