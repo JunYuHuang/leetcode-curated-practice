@@ -2,12 +2,40 @@
 
 ## General Notes
 
-- depth = level + 1, null root has depth 0, root with no children has depth 1
+- PEDAC: Problem
+  - input:
+    - `root`: root node of a binary tree
+      - may be null
+      - if not null, has a value in the range \[-100, 100]
+    - binary tree whose root node is `root`
+      - has nodes in the range \[0, 10^4]
+      - has nodes whose values are in the range \[-100, 100]
+  - output:
+    - `res`: int that represents the max depth of the tree whose root node is `root`
+      - in the range \[0, 10^4]
+  - depth = level + 1
+    - null root has depth 0
+    - root with no children has depth 1
+- PEDAC: Examples
+  - TODO
 
 ## Solution 1: BFS iterative
 
 - O(N) time and O(N) space solution
 - traverse tree in a level-order manner using queue and increment depth for every level traversed
+- initialise variables
+  - `res`: int that represents the max depth set to 0 initially
+  - `queue`: queue array for traversing the tree in BFS order
+- if `root` is not null, push it to `queue`
+- while `queue` is not empty
+  - `res++`
+  - `levelSize` = length of `queue`
+  - loop for `i` for the range [0, `levelSize` - 1]
+    - `curr` = pop first element from `queue`
+    - skip to next iteration if `curr` is null
+    - push `curr.left` to `queue` if `curr.left` is not null
+    - push `curr.right` to `queue` if `curr.right` is not null
+- return `res`
 
 ## Solution 2: DFS recursive bot-up
 

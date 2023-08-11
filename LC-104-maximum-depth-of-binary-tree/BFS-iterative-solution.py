@@ -4,15 +4,18 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-# My O(N) time and O(N) space BFS iterative solution
+# O(N) T and O(N) S BFS iterative solution
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
-        if not root: return 0
-        q, depth = deque([root]), 0
-        while q:
-            for i in range(len(q)):
-                curr = q.popleft()
-                if curr.left: q.append(curr.left)
-                if curr.right: q.append(curr.right)
-            depth += 1
-        return depth
+        res = 0
+        queue = deque([root])
+        if root: queue.append(root)
+        while queue:
+            res += 1
+            levelSize = len(queue)
+            for i in range(levelSize):
+                curr = queue.popleft()
+                if not curr: continue
+                if curr.left: queue.append(curr.left)
+                if curr.right: queue.append(curr.right)
+        return res
