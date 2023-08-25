@@ -4,10 +4,12 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-# O(N) T and O(N) S recursive solution
+# O(N) T and O(N) S DFS recursive solution
 class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         if not p and not q: return True
         if not p or not q: return False
         if p.val != q.val: return False
-        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+        left = self.isSameTree(p.left, q.left)
+        right = self.isSameTree(p.right, q.right)
+        return left and right
