@@ -4,18 +4,19 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-# My O(N) time and O(N) space BFS iterative solution
+# O(N) T and O(N) S BFS iterative solution
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         if not root: return []
-        res, q = [], deque([root])
-        while q:
+        res = []
+        queue = deque([root])
+        while queue:
+            levelSize = len(queue)
             level = []
-            qLen = len(q)
-            for n in range(qLen):
-                curr = q.popleft()
+            for i in range(levelSize):
+                curr = queue.popleft()
                 level.append(curr.val)
-                if curr.left: q.append(curr.left)
-                if curr.right: q.append(curr.right)
+                if curr.left: queue.append(curr.left)
+                if curr.right: queue.append(curr.right)
             res.append(level)
         return res
