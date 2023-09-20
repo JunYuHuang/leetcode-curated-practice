@@ -4,7 +4,7 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-# O(N) T and O(N) S DFS recursive solution
+# O(N) T and O(LogN) S DFS recursive solution
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
         res = 0

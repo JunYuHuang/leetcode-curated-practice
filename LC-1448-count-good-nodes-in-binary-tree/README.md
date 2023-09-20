@@ -21,7 +21,7 @@
 
 ## Solution 1: DFS recursive
 
-- O(N) time and O(N) space solution
+- O(N) time and O(LogN) space solution
 - initialise variables
   - `res`: global int initially set to 0 that represents the count of all good nodes in the binary tree whose root node is `root`
 - helper recursive function `dfs(curr, maxVal)`:
