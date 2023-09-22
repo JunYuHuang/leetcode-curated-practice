@@ -15,7 +15,7 @@
 - PEDAC: Examples
   - TODO
 
-## Solution 1: DFS inorder recursive solution
+## Solution 1: DFS inorder recursive
 
 - O(N) T and O(N) S solution
 - initialise variables
@@ -27,3 +27,10 @@
   - `inorder(curr.right)`
 - `inorder(root)`
 - return `visited[k - 1]`
+
+## Solution 2: DFS inorder recursive optimized (tmohan's modded)
+
+- O(LogN) T and O(LogN) S solution
+- same approach as solution 1 but
+  - use `res` variable to store an int instead of an array
+  - recursive helper function exits early when `k` elements have been visited
