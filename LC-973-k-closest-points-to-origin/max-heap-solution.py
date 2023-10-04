@@ -1,4 +1,4 @@
-# O(NLogN) T and O(N) S max heap solution
+# O((N - K) * LogN) T and O(N) S max heap solution
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
         res = []

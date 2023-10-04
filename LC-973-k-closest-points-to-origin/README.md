@@ -18,7 +18,7 @@
 
 ## Solution 1: max heap
 
-- O(NLogN) T and O(N) S solution
+- O((N - K) * LogN) T and O(N) S solution
 - other notes
   - optional to sqrt the Euclidean distance
 - initalise variables
@@ -32,3 +32,10 @@
 - for each element `e` in `maxHeap`:
   - push `e[1]` (the point / coordinate) to `res`
 - return `res`
+
+## Solution 2: min heap (NeetCode's modded)
+
+- O(KLogN) T and O(N) S solution
+- same approach as solution 2 but:
+  - use min heap instead of max heap
+  - pop from heap `k` times instead of `N - k` times
