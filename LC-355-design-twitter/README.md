@@ -16,11 +16,11 @@
     - `follow(followerId, followeeId)`
       - input: both ints
       - output: none
-      - user with id `folloerId` starts following user with id `followeeId`
+      - user with id `followerId` starts following user with id `followeeId`
     - `unfollow(followerId, followeeId)`
       - input: both ints
       - output: none
-      - user with id `folloerId` stops following user with id `followeeId`
+      - user with id `followerId` stops following user with id `followeeId`
   - constraints
     - `userId`, `followerId`, `followeeId`:
       - ints of values in the range \[1, 500]
