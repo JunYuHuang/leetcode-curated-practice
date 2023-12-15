@@ -47,3 +47,22 @@
 - summary notes
   - define `Node` class for singly linked list with `val` and `next` fields
   - define fields `dummyHead` and `size` fields for `MyLinkedList` class
+
+## Solution 2: doubly linked list solution (NeetCode's modded)
+
+- For time and space complexity, see individual methods
+  - where N = count of nodes in the list
+  - `get(index)`: O(N) T
+  - `addAtHead(val)`: O(1) T
+  - `addAtTail(val)`: O(1) T
+  - `addAtIndex(index, val)`: O(N) T
+  - `deleteAtIndex(index)`: O(N) T
+- summary notes
+  - define `Node` class for doubly linked list with
+    - int `val` field
+    - `Node` `prev` pointer field
+    - `Node` `next` pointer field
+  - define my `MyLinkedList` class
+    - `Node` `left` field that is a dummy node that points to the list's head node if it exists else `right`
+    - `Node` `right` field that is a dummy node that points to the list's tail node if it exists else `left`
+  - update `next` and `prev` pointers for `left` and `right` dummy nodes on list mutation (add or remove operations)
