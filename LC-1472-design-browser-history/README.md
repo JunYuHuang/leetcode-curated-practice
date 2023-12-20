@@ -28,7 +28,7 @@
 
 - For time and space complexity, see individual methods
   - where N = count of nodes in the list
-  - `visit(url)`: O(1) T
+  - `visit(url)`: O(N) T
   - `back(steps)`: O(N) T
   - `forward(steps)`: O(N) T
 - `BrowserHistory(homepage)` constructor that sets the following instance fields:
@@ -52,3 +52,23 @@
     - `currPos++`
     - `forwardSteps--`
   - return `stack[currPos][1]`
+
+## Solution 2: doubly linked list solution
+
+- For time and space complexity, see individual methods
+  - where N = count of nodes in the list
+  - `visit(url)`: O(1) T
+  - `back(steps)`: O(N) T
+  - `forward(steps)`: O(N) T
+- same concept as solution 1 but:
+  - replace stack of `[index, url]` elements with doubly linked list of nodes with fields `val`, `prev`, and `next`
+  - constructor initialises with 3 fields
+    - `left`: dummy node point to start of linked list
+    - `right`: dummy node pointing to end of linked list
+    - `curr`: pointer that points to current visited page in list
+  - `visit(url)`
+    - instead of having to pop all elements before the current page, just need to update pointers for `curr`, `right`, and for the newly created node
+  - `backward(steps)`:
+    - keep moving `curr` pointer backward only if `steps` > 0 and `curr` is not null and `curr.prev` is not `left`
+  - `forward(steps)`:
+    - keep moving `curr` pointer forward only if `steps` > 0 and `curr` is not null and `curr.next` is not `right`
