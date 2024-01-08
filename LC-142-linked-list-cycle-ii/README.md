@@ -13,7 +13,10 @@
       - if has a cycle, there exists a valid node that starts the cycle
       - nodes may have duplicate values
   - output:
-    - `res`: `ListNode` node that begins the cycle (node that has 2 nodes whose next pointers point to it) or null if there is no cycle
+    - `res`: `ListNode` node that begins the cycle or null if there is no cycle
+      - for a non-null node that starts the cycle,
+        - it has 2 nodes pointing to it if it is not the head node
+        - it has 1 node pointing to it if it is the head node
   - constraints
     - cannot modify list
   - follow-up
@@ -34,3 +37,23 @@
     - `cur` = `cur.next`
   - if exited while loop,
     - return null
+
+## Solution 2: slow and fast pointers (2 pointers)
+
+- O(N) T and O(1) S solution
+- summary
+  - return null if list is empty (null `head`) or list is non-cyclic and of size 1 (null `head.next`)
+  - set `fast` and `slow` pointers initially to `head`
+  - while both `fast` and `fast.next` are not null,
+    - move `slow` pointer forward (in list) by 1 node
+    - move `fast` pointer forward (in list) by 2 nodes
+    - break out of loop if both pointers are pointing at the same node
+  - if list is non-cyclic,
+    - even-sized non-cyclic lists have a null `fast` pointer
+    - odd-sized non-cyclic lists have a null `fast.next` pointer
+    - return null
+  - set `slow2` pointer pointing initially to `head`
+  - while both `slow2` and `slow` pointers are not pointing at the same node,
+    - move each pointer forward (in list) by 1 node
+  - return either pointer
+- TODO: proof and explanation for why this algorithm works
