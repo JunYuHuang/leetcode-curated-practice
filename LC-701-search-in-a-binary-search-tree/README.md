@@ -41,3 +41,18 @@
 - else
   - `prev.left` = `Node(val)`
 - return `root`
+
+## Solution 2: recursive
+
+- O(LogN) T and O(LogN) S solution
+- summary
+  - make recursive calls on each node on the path from `root` to the parent node of the to-be inserted new node with value `val`
+  - re-updates the pointers (that connect a parent with its left or right child) for each node on the path while traversing down the tree
+- make function itself `insertIntoBST(root, val)` recursive
+  - if `root` is null,
+    - return `TreeNode(val)`
+  - if `val` > `root.val`,
+    - `root.right` = `insertIntoBST(root.right, val)`
+  - else,
+    - `root.left` = `insertIntoBST(root.left, val)`
+  - return `root`
