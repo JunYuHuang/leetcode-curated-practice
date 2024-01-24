@@ -4,14 +4,15 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-# NeetCode's O(N) time and O(N) space DFS recursive solution
+# O(N) T and O(N) S DFS recursive solution
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         res = []
-        def inorder(curr):
-            if not curr: return
-            inorder(curr.left)
-            res.append(curr.val)
-            inorder(curr.right)
-        inorder(root)
+        def dfs(node):
+            if not node:
+                return
+            dfs(node.left)
+            res.append(node.val)
+            dfs(node.right)
+        dfs(root)
         return res
