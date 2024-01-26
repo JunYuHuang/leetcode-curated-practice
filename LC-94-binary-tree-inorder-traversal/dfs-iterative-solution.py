@@ -4,12 +4,14 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-# NeetCode's O(N) time and O(N) space DFS iterative solution
+# O(N) T and O(N) S DFS iterative solution (NeetCode's modded)
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        res = []
-        stack = []
+        if not root:
+            return []
         curr = root
+        stack = []
+        res = []
         while curr or stack:
             while curr:
                 stack.append(curr)

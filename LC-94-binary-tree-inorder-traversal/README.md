@@ -28,17 +28,28 @@
 - `dfs(root)`
 - return `res`
 
-## Solution 2: DFS iterative (NeetCode's)
+## Solution 2: DFS iterative (NeetCode's modded)
 
 - O(N) time and O(N) space solution
-- simulate recursive / implicit call stack using explicit stack
-- optional: return empty array if null root
-- empty res array, empty stack array, curr Node pointer pointing to root
-- while curr is not null or while stack is non empty
-  - while curr is not null
-    - push curr to stack
-    - curr = curr's L node
-  - curr = pop from stack
-  - push its value to res
-  - curr = curr's R node
-- return res
+- summary:
+  - simulate implicit recursive call stack with explicit stack of nodes
+- if `root` is empty,
+  - return an empty array
+- initialise variables
+  - `curr`: set to `root`
+  - `stack`: empty array of `TreeNode`'s
+  - `res`: empty int array of tree traversed in inorder
+- while `curr` is not null or `stack` is not empty,
+  - until `curr` is null, keep pushing `curr` to stack and moving to `curr`'s left child
+    - while `curr`,
+      - push `curr` to `stack`
+      - `curr` = `curr.left`
+  - process last node in stack
+    - guaranteed that `stack` is not empty at this time because
+      - all non-null `curr` nodes end up queued in stack
+      - if `curr` was null and `stack` was empty, would have exited before first line in outer while loop
+    - `curr` = pop last `TreeNode` el from `stack`
+    - push `curr.val` to `res`
+  - start processing `curr`'s right child / subtree
+    - `curr` = `curr.right`
+- return `res`
