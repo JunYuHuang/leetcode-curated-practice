@@ -43,3 +43,19 @@
     - returns `inorder[pos]`
   - `hasNext()`
     - returns `pos + 1` < size of `inorder`
+
+## Solution 2: DFS iterative (NeetCode's modded)
+
+- method dependent T and S solution
+- summary:
+  - simulate implicit call stack with explicit stack of `TreeNode`s
+  - `constructor(root)`
+    - start at `root`
+    - keep pushing nodes to stack and going down left in tree while `curr` node is not null
+  - `next()`
+    - `res` = pop node from stack
+    - `curr` = `res.right`
+    - keep pushing `curr` to stack and moving `curr` down its left tree while `curr` is not null
+    - return `res.val`
+  - `hasNext()`
+    - returns true if stack is not empty else false
