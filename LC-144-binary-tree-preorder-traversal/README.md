@@ -2,20 +2,29 @@
 
 ## General Notes
 
-- preorder = root -> L subtree -> R subtree
+- PEDAC: Problem
+  - inputs
+    - `root`: root `TreeNode` of a binary tree
+      - may be null
+      - its tree
+        - has nodes in range \[0, 100]
+  - output
+    - `res`: int array of the values of the nodes in tree whose root is `root` traversed in preorder
+      - if no array exists, return an empty array
+  - preorder = root -> L subtree -> R subtree
 
 ## Solution 1: DFS recursive
 
 - O(N) time and O(N) space solution
-- return empty array if root is null
-- initialise empty res array
-- helper recursive function dfs(curr node)
-  - if curr is null, return
-  - push curr's value to res
-  - dfs(curr.L, res)
-  - dfs(curr.R, res)
-- dfs(root)
-- return res
+- summary
+  - initialise global `res` empty array
+  - define helper function `dfs(node)`
+    - returns if `node` is null
+    - pushes `node.val` to `res`
+    - call itself on its left child
+    - call itself on its right child
+  - call `dfs(root)`
+  - return `res`
 
 ## Solution 2: DFS iterative (LeetCode's modified)
 
@@ -33,4 +42,3 @@
     - push its R node to stack
     - push its L node to stack
 - return res
-
