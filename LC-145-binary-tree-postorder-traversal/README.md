@@ -2,20 +2,28 @@
 
 ## General Notes
 
-- postorder =  L subtree -> R subtree -> root
+- PEDAC: Problem
+  - inputs
+    - `root`: root `TreeNode` of a binary tree that
+      - has nodes in the range \[0, 100]
+      - has nodes of values in range \[-100, 100]
+  - output
+    - `res`: int array that holds the values of the nodes in the binary tree whose root is `root` ordered in postorder
+  - notes
+  - postorder = L subtree -> R subtree -> root
 
 ## Solution 1: DFS recursive
 
 - O(N) time and O(N) space solution
-- return empty array if root is null
-- initialise empty res array
-- helper recursive function dfs(curr node)
-  - if curr is null, return
-  - dfs(curr.L, res)
-  - dfs(curr.R, res)
-  - push curr's value to res
-- dfs(root)
-- return res
+- initialise variables
+  - `res`: empty int array
+- define helper `dfs(node)` function
+  - return if `node` is null
+  - `dfs(node.left)`
+  - `dfs(node.right)`
+  - push `node.val` to `res`
+- `dfs(root)`
+- return `res`
 
 ## Solution 2: DFS iterative ([StefanPochmann's comment on heiswyd's solution modified](https://leetcode.com/problems/binary-tree-postorder-traversal/discuss/45582/A-real-Postorder-Traversal-.without-reverse-or-insert-4ms/432681))
 

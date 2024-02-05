@@ -4,15 +4,18 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-# My O(N) time and O(N) space DFS recursive solution
+# O(N) T and O(N) S DFS recursive solution
 class Solution:
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        if not root: return []
         res = []
-        def dfs(curr):
-            if not curr: return
-            dfs(curr.left)
-            dfs(curr.right)
-            res.append(curr.val)
+
+        def dfs(node):
+            if not node:
+                return
+            dfs(node.left)
+            dfs(node.right)
+            res.append(node.val)
+
         dfs(root)
+
         return res
