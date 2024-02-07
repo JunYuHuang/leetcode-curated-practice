@@ -4,20 +4,28 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-# O(N) time and O(N) space DFS iterative solution (StefanPochmann's comment on heisywd's solution modified)
+# O(N) T and O(min(LogN, N)) S DFS iterative solution (NeetCode's modded)
 class Solution:
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        if not root: return []
-        res, stack = [], [root, root]
+        if not root:
+            return []
+        res = []
+        stack = [root]
+        visit = [False]
+
         while stack:
             curr = stack.pop()
-            if stack and stack[-1] == curr:
-                if curr.right:
-                    stack.append(curr.right)
-                    stack.append(curr.right)
-                if curr.left:
-                    stack.append(curr.left)
-                    stack.append(curr.left)
-            else: # found first leftmost node from root
+            isVisited = visit.pop()
+            if isVisited:
                 res.append(curr.val)
+                continue
+            stack.append(curr)
+            visit.append(True)
+            if curr.right:
+                stack.append(curr.right)
+                visit.append(False)
+            if curr.left:
+                stack.append(curr.left)
+                visit.append(False)
+
         return res

@@ -25,18 +25,28 @@
 - `dfs(root)`
 - return `res`
 
-## Solution 2: DFS iterative ([StefanPochmann's comment on heiswyd's solution modified](https://leetcode.com/problems/binary-tree-postorder-traversal/discuss/45582/A-real-Postorder-Traversal-.without-reverse-or-insert-4ms/432681))
+## Solution 2: DFS iterative (NeetCode's modded)
 
-- O(N) time and O(N) space solution
-- same approach as DFS recursive but
-  - simulate implicit call stack with explicit stack
-  - push R node before L node to stack b/c stack pops from end
-    - need to process L node before R node for postorder
-- push each node twice on the stack
-- when popping a node
-  - if popped node is the same node at the stack's top
-    - have not reached first leftmost node yet
-    - keep pushing popped node's children (R first then L) to stack if they exist
-  - else if stack is empty or stack's top is not the popped node
-    - finished searched with popped node
-    - can process node i.e. push it to res array
+- O(N) time and O(min(LogN, N)) space solution
+- simulate implicit call stack with explicit stack of `TreeNode`'s
+- only process or add node's val to `res` if node has been visited before
+- use additional stack to keep track if node has been visited before that maps to explicit stack like so:
+  - `stack[i]` = `TreeNode`
+  - `visit[i]` = true or false boolean
+- initialise variables
+  - `res` = empty int array
+  - `stack` = `TreeNode` stack / array with just `root`
+  - `visit` = boolean stack / array with just `false`
+- keep processing while `stack` is not empty
+  - `curr` = pop from `stack`
+  - `isVisited` = pop from `visit`
+  - if `isVisited` is true,
+    - push `curr.val` to `res` and continue
+  - else
+    - push `curr` to `stack`
+    - push true to `visit`
+    - if `curr.right` is not null,
+      - push `curr.right` and false to `stack` and `visit` respectively
+    - if `curr.left` is not null,
+      - push `currleft` and false to `stack` and `visit` respectively
+  - return `res`
