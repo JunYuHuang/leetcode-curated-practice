@@ -3,10 +3,15 @@
 ## General Notes:
 
 - PEDAC: Problem
-  - input: root: TreeNode, targetSum: int
-    - node values and targetSum can be negative
-    - root may be null
-  - output: bool
+  - input:
+    - `root`: TreeNode root of a binary tree
+      - may be null
+      - whose binary tree
+        - has nodes in the range \[0, 5000]
+        - has nodes of values in the range \[-1000, 1000]
+    - `targetSum`: int in range \[-1000, 1000]
+  - output:
+    - `res`: bool that is true if there exists a root-to-leaf path whose sum of its nodes equals `targetSum` else false
   - for every path traversed,
     - must start from the root node and end at a leaf node
     - leaf node is a node with no L or R children
@@ -20,15 +25,14 @@
 
 ## Solution 1: DFS recursive
 
-- O(N) time and O(N) space solution
-- make function recursive
-- for each recursive call, keep subtracting from targetSum
-- base cases
-  - if root is null, return false
-  - if root is a leaf node and targetSum - root.val is 0, return true
-- left = recursive call on root's L node with targetSum subtract root's val 
-- right = recursive call on root's R node with targetSum subtract root's val 
-- return true if either left or right return true
+- O(N) T and O(N) S solution
+- summary
+  - make `hasPathSum(root, targetSum)` method itself recursive
+    - if `root` is null, return false
+    - `currSum` = `targetSum` - `root.val`
+    - if `currSum` is 0 and `root` is a leaf node,
+      - return true
+    - return `hasPathSum(root.left, currSum)` or `hasPathSum(root.right, currSum)`
 
 ## Solution 2: DFS iterative
 
