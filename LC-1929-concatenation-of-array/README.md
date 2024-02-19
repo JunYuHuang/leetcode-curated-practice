@@ -1,4 +1,4 @@
-# [LC. 1929](https://leetcode.com/problems/concatenation-of-array/)
+# [LC 1929. Concatenation of Array](https://leetcode.com/problems/concatenation-of-array/)
 
 ## General Notes:
 
