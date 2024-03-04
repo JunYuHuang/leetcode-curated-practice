@@ -51,3 +51,27 @@
   - `botLeft`: `sumMatrix[row2][col1 - 1]` if `col1` > 0 else 0
   - `botRight`: `sumMatrix[row2][col2]`
   - return `topLeft` - `topRight` - `botLeft` + `botRight`
+
+## Solution 2: prefix sums (NeetCode's modded)
+
+- O(1) T `sumRegion()`
+- summary
+  - same approach as solution 1 but `sumMatrix` uses an extra row and column
+    - i.e. if `matrix` has `m` rows and `n` cols, then `sumMatrix` has `m` + 1 rows and `n` + 1 cols
+- `NumMatrix(matrix)` constructor
+  - initialise `sumMat` int matrix with `m + 1` rows and `n + 1` cols based on `matrix`
+  - loop for `r` rows from indices 1 to `m + 1`,
+    - loop for `c` cols from indices 1 to `n + 1`,
+      - `downleft`: `sumMat[r][c - 1]`
+      - `upRight`: `sumMat[r - 1][c]`
+      - `upLeft`: `sumMat[r - 1][c - 1]`
+      - `downRight`: `matrix[r - 1][c - 1]`
+      - `sumMat[r][c]` = `downRight` + `downLeft` + `upRight` - `upLeft`
+- `sumRegion(row1, col1, row2, col2)` method
+  - note: must add an extra +1 offset to all row and col indices to account for extra row and col in `sumMat`
+    - `row1` += 1, `col1` += 1, `row2` += 1, `col2` += 1
+  - `topLeft`: `sumMat[row1 - 1][col1 - 1]`
+  - `topRight`: `sumMat[row1 - 1][col2]`
+  - `botLeft`: `sumMat[row2][col1 - 1]`
+  - `botRight`: `sumMat[row2][col2]`
+  - return `botRight` - `botLeft` - `topRight` + `topLeft`
