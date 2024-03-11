@@ -26,3 +26,15 @@
     - if `leftSum` == `rightSum`,
       - return `i`
   - return -1
+
+## Solution 2: prefix sums optimized (NeetCode's modded)
+
+- O(N) T and O(1) S solution
+- same approach as solution 1 with some changes:
+  - simulate computed prefix sums array from solution 1 with `leftSum`, `rightSum`, and `total` variables only
+  - `total` = `sum(nums)`
+  - compute `leftSum`:
+    - initialize as 0
+    - when looping thru `nums`, += `nums[i]` before next loop
+  - compute `rightSum`:
+    - when loop thru `nums`, = `total` - `nums[i]` - `leftSum`
