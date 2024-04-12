@@ -23,12 +23,21 @@
   - edge cases
     - `intervals` of size 0
       - return array of size 1 composed of `newInterval`
-    - `intervals` of size 1
-      - ?
 - PEDAC: Examples
 
-## Solution 1: intervals
+## Solution 1: merge intervals (NeetCode's modded)
 
 - O(N) T and O(N) S solution
-- summary
-  - TODO
+- store modified result in empty array `res`
+- deal with 3 cases when looping thru `intervals`
+  - `newInterval` is before `intervals[i]`
+    - return new array whose first element is `newInterval` and the rest of it are all the elements in `intervals` from index `i` to the last index
+  - `newInterval` is after `intervals[i]`
+    - push `intervals[i]` to `res`
+  - `newInterval` overlaps with `intervals[i]`
+    - merge `newInterval` and `intervals[i]` into a new interval
+    - new interval's
+      - start: min of (`newInterval[0]`, `intervals[i][0]`)
+      - end: max of (`newInterval[1]`, `intervals[i][1]`)
+- if exited loop,
+  - push `newInterval` to `res` and return `res`
