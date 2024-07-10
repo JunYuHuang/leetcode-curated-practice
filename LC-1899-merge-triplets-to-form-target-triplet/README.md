@@ -40,3 +40,11 @@
     - if `trip[j]` == `target[j]`,
       - add `j` to `matchedIndices`
 - return `matchedIndices.length` == 3
+
+## Solution 2: greedy (NeetCode's modded)
+
+- O(N) T and O(N) S solution
+- same as solution but
+  - loop thru `triplets` only once
+  - does not mark invalid triplets
+  - uses a long if-statement to skip invalid triplets
