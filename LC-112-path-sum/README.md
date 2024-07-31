@@ -40,13 +40,19 @@
 
 - O(N) time and O(N) space solution
 - same approach as solution 1 DFS recursive but
-  - replace recursive calls with explicit stack of elements of recursive call parameters
-- optional: return false if root is null
-- initialise stack with pair (root, targetSum)
-- while stack is not empty:
-  - node, currSum = pop from stack top
-  - if node is null, skip to next loop
-  - res int = currSum - node's value
-  - if node is leaf node and res is 0, return true
-  - push pairs (node.L, res), (node.R, res) to stack
-- if finished processing tree, return false
+  - simulate call stack with an explicit stack
+- initialise variables
+  - `stack`: stack of `[node, curSum]` elements initialised with element `[root, targetSum]`
+    - only holds non-null nodes
+- return false if `node` is null
+- while `stack` is not empty,
+  - `node`, `curSum` = pop last el from `stack`
+  - `curSum` -= `node.val`
+  - if `node` is a leaf node and `curSum` is 0,
+    - means both `node.left` and `node.right` are null
+    - return true
+  - if `node.left`,
+    - push `[node.left, curSum]` to `stack`
+  - if `node.right`,
+    - push `[node.right, curSum]` to `stack`
+- return false if exited loop
