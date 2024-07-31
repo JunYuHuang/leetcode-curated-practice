@@ -7,13 +7,16 @@
 # O(N) T and O(N) S DFS recursive solution
 class Solution:
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
-        if not root:
-            return False
-        currSum = targetSum - root.val
-        if (currSum == 0 and
-            not root.left and
-            not root.right):
-            return True
-        left = self.hasPathSum(root.left, currSum)
-        right = self.hasPathSum(root.right, currSum)
-        return left or right
+        def dfs(node, curSum):
+            if not node:
+                return False
+
+            curSum -= node.val
+            if not node.left and not node.right:
+                return curSum == 0
+
+            leftCall = dfs(node.left, curSum)
+            rightCall = dfs(node.right, curSum)
+            return leftCall or rightCall
+
+        return dfs(root, targetSum)

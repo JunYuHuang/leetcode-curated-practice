@@ -26,13 +26,15 @@
 ## Solution 1: DFS recursive
 
 - O(N) T and O(N) S solution
-- summary
-  - make `hasPathSum(root, targetSum)` method itself recursive
-    - if `root` is null, return false
-    - `currSum` = `targetSum` - `root.val`
-    - if `currSum` is 0 and `root` is a leaf node,
-      - return true
-    - return `hasPathSum(root.left, currSum)` or `hasPathSum(root.right, currSum)`
+- define a helper function `dfs(node, curSum)`
+  - return false if `node` is null
+  - `curSum` -= `node.val`
+  - if `node` is a leaf node,
+    - return `curSum` == 0
+  - `leftCall` = `dfs(node.left, curSum)`
+  - `rightCall` = `dfs(node.right, curSum)`
+  - return `leftCall` || `rightCall`
+- return `dfs(root, targetSum)`
 
 ## Solution 2: DFS iterative
 
