@@ -3,8 +3,10 @@
 ## General Notes
 
 - PEDAC: Problem
-  - input: 
-    - `nums`: int array of size in range \[1, 10] whose values are in range \[-10, 10] and whose values are all unique
+  - input:
+    - `nums`: non-empty int array
+      - of size in range \[1, 10]
+      - of values are in range \[-10, 10] and are all unique
   - output: int matrix of permutations (array of int arrays)
   - valid subset properties
     - ~ 2^n solutions given an input with n elements
@@ -24,13 +26,18 @@
 
 ## Solution 1: recursive backtracking (NeetCode's modded)
 
-- O(N * 2^N) T & and O(N * 2^N) S solution
-- initialise empty res array
-- define helper recursive function `backtrack(curr, i)`
-  - if i is out of bounds
-    - add copy of curr to res and return
-  - push `nums[i]` to curr
-  - call itself recursively on (curr, i + 1)
-  - pop from curr
-  - call itself recursively on (curr, i + 1) ?
-- call backtrack([], i) and return res
+- O(N \* 2^N) T and O(N \* 2^N) S solution
+- initialise variables
+  - `res`: empty array to hold all unique subsets of `nums`
+  - `NUMS_LEN`: int count of all elements in `nums`
+- define helper function `dfs(i, subset)`
+  - if `i` is out-of-bounds,
+    - means `i` >= `NUMS_LEN`
+    - push a copy of `subset` to `res`
+    - return
+  - push `nums[i]` to `subset`
+  - `dfs(i + 1, subset)`
+  - pop from `subset`
+  - `dfs(i + 1, subset)`
+- `dfs(0, [])`
+- return `res`
