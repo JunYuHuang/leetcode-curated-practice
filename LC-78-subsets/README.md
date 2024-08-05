@@ -41,3 +41,22 @@
   - `dfs(i + 1, subset)`
 - `dfs(0, [])`
 - return `res`
+
+## Solution 2: iterative backtracking
+
+- O(N \* 2^N) T and O(2^N) S solution
+- same approach as solution 1 but use an explicit stack to emulate recursive calls
+- initialise variables
+  - `res`: empty array to hold all unique subsets of `nums`
+  - `NUMS_LEN`: int count of all elements in `nums`
+  - `stack`: array of `[i, sub]` elements initialised with element `[0, []]`
+- while `stack` is not empty,
+  - `i`, `sub` = pop from `stack`
+  - if `i` >= `NUMS_LEN`,
+    - push `sub` to `res`
+    - continue
+  - push `nums[i]` to `sub`
+  - push [`i` + 1, copy of `sub`] to `stack`
+  - pop from `sub`
+  - push [`i` + 1, copy of `sub`] to `stack`
+- return `res`
