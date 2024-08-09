@@ -3,27 +3,42 @@
 ## General Notes
 
 - PEDAC: Problem
-  - input: 
-    - `candidates`: int array of distinct els of size in range \[2, 30] and whose values are in range \[2, 40]
-    - `target`: int sum that want a combination of `candidates` to add up to
-  - output: int array of all possible unique int subarray combinations that each sum up to `target`
+  - input:
+    - `candidates`: int array
+      - of size in range \[1, 30]
+      - of unique values `candidates[i]` in range \[2, 40]
+    - `target`: int
+      - of a value in range \[1, 40]
+  - output:
+    - `res`: int 2D array
+      - of size in range \[0, 150]
+      - of all possible unique int subarrays that each sum up to `target`
+        - each subarray's size is in range `[1, candidates.length]`
     - empty if there is no valid combination
     - each combination can reuse the same int el from `candidates` any number of times
 - PEDAC: Examples
 
 ## Solution 1: recursive backtracking (NeetCode's modded)
 
-- O(N ^ T)? T & and O(N ^ T)? S solution
-- initialise empty res array
-- helper recursive function `backtrack(comb, currSum startPos)`
-  - if i is out of bounds or currSum < target, return
-  - if currSum == target, push copy of comb to res and return
-  - push candidates\[i] to comb
-  - backtrack(comb, currSum - candidates\[i], startPos) 
-    - includes candidates\[i] from all branching out combos
-  - pop from comb
-  - backtrack(comb, currSum, startPos + 1)
-    - excludes candidates\[i] from all branching out combos
-  - no loop to iterate thru all els in `candidates` to avoid duplicates
-- backtrack([], target, i)
-- return res
+- O(N \* 2^N) T and O(N \* 2^N) S solution
+- summary
+  - for each element in `candidates`, create 2 branches
+    - branch 1: include `candidates[i]`
+    - branch 2: exclude `candidates[i]`
+- initialise variables
+  - `res`: 2D array to hold all unique subset combos
+  - `CANDIDATES_LEN`: int count of all elements in `candidates`
+- create helper function `backtrack(i, curSub, curSum)`
+  - if `i` >= `CANDIDATES_LEN` or `curSum` < 0,
+    - return
+  - if `curSum` == 0,
+    - push `curSub` to `res`
+    - return
+  - include `candidates[i]` in recursive call
+    - push `candidates[i]` to `curSub`
+    - `dfs(i, curSub, curSum - candidates[i])`
+  - exclude `candidates[i]` in recursive call
+    - pop from `curSub`
+    - `dfs(i + 1, curSub, curSum)`
+- `dfs(0, [], tafget)`
+- return `res`
