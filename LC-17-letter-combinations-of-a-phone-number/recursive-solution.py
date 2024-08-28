@@ -1,25 +1,25 @@
-# O(N * 4^N) T and O(N * 4^N) S recursive backtracking solution
+# O(N * 4^N) T and O(N * 4^N) S recursive backtracking solution (NeetCode's modded)
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
-        if not digits: return []
-        res, N = [], len(digits)
-        digitToLetters = {
-            "2": "abc",
-            "3": "def",
-            "4": "ghi",
-            "5": "jkl",
-            "6": "mno",
-            "7": "pqrs",
-            "8": "tuv",
-            "9": "wxyz"
+        if len(digits) == 0:
+            return []
+
+        res = []
+        N = len(digits)
+        digToChar = {
+            '2': 'abc', '3': 'def', '4': 'ghi',
+            '5': 'jkl', '6': 'mno', '7': 'pqrs',
+            '8': 'tuv', '9': 'wxyz'
         }
-        def backtrack(curr, i):
-            if i == N:
-                res.append("".join(curr[:]))
+
+        def dfs(i = 0, comb = []):
+            if i >= N:
+                res.append("".join(comb))
                 return
-            for c in digitToLetters[digits[i]]:
-                curr.append(c)
-                backtrack(curr, i + 1)
-                curr.pop()
-        backtrack([], 0)
+            for c in digToChar[digits[i]]:
+                comb.append(c)
+                dfs(i + 1, comb)
+                comb.pop()
+
+        dfs()
         return res
