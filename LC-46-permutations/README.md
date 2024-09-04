@@ -3,21 +3,37 @@
 ## General Notes
 
 - PEDAC: Problem
-  - input: 
-    - `nums`: int array of size in range \[1, 6] whose values are in range \[-10, 10] and whose values are all unique
-  - output: int matrix of permutations (array of int arrays)
+  - input:
+    - `nums`: non-empty int array
+      - of size in range \[1, 6]
+      - of values in range \[-10, 10]
+      - of all unique values
+  - output:
+    - `res`: array of int arrays
+      - each subarray is a permutation of `nums`
+      - should not have duplicate subarrays
+  - `perm` is a permutation of `nums` IFF
+    - they are of equal length
+    - they have the same elements
+    - `perm` has the elements in `nums` in some order
+      - order may be the same or different as `nums`
+    - each reordering of `nums`' elements is a permutation
 - PEDAC: Examples
 
-## Solution 1: recursive backtracking (NeetCode's)
+## Solution 1: recursive backtracking (mine)
 
-- O(N * N!) T & and O(N * N!) S solution
-- make function itself `permute(nums)` recursive
-- initialise empty res array
-- if nums is of 1 el, return a copy of it in an empty array
-- loop thru each int in nums
-  - pop and store first el in nums in `n`
-  - store recursive call of itself in `perms`
-  - for each perm in `perms`, push `n` to it
-  - add the perms to res
-  - push `n` back to nums
-- return res
+- O(N \* !N) T and O(N \* !N) S solution
+- initialise variables
+  - `res`: set to empty array
+  - `N`: set to length of `nums`
+- define function `dfs(perm, cur_nums)`
+  - if `perm`'s length >= `N`,
+    - push copy of `perm` to `res`
+    - return
+  - loop thru every index `i` in `cur_nums`,
+    - push `cur_nums[i]` to `perm`
+    - `new_nums` = copy of `cur_nums` excluding element at index `i`
+    - `dfs(perm, new_nums)`
+    - pop from `perm`
+- `dfs([], nums)`
+- return `res`
