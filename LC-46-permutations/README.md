@@ -58,3 +58,17 @@
     - remove `n` from `used`
 - `dfs([], empty set)`
 - return `res`
+
+## Solution 3: recursive backtracking 3 (NeetCode's modded)
+
+- O(N^2 \* !N) T and O(N^2 \* !N) S solution
+- if `nums` is empty,
+  - return `[[]]`
+- set `res` to empty array
+- set `perms` to `permute(nums[1:])`
+- loop thru every subarray `perm` in `perms`,
+  - loop thru `i` from 0 to `perm`'s length inclusive,
+    - set `perm_copy` to copy of `perm`
+    - insert `nums[0]` before index `i` of `perm_copy`
+    - push `perm_copy` to `res`
+- return `res`
