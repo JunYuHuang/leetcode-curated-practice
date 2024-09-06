@@ -20,7 +20,7 @@
     - each reordering of `nums`' elements is a permutation
 - PEDAC: Examples
 
-## Solution 1: recursive backtracking (mine)
+## Solution 1: recursive backtracking 1 (mine)
 
 - O(N \* !N) T and O(N \* !N) S solution
 - initialise variables
@@ -36,4 +36,25 @@
     - `dfs(perm, new_nums)`
     - pop from `perm`
 - `dfs([], nums)`
+- return `res`
+
+## Solution 2: recursive backtracking 2 (mine)
+
+- O(N \* !N) T and O(N \* !N) S solution
+- initialise variables
+  - `res`: set to empty array
+  - `N`: set to length of `nums`
+- define function `dfs(perm, used)`
+  - if `perm`'s length >= `N`,
+    - push copy of `perm` to `res`
+    - return
+  - loop thru every element `n` in `nums`,
+    - if `n` is in `used`,
+      - continue
+    - push `n` to `perm`
+    - add `n` to `used`
+    - `dfs(perm, used)`
+    - pop from `perm`
+    - remove `n` from `used`
+- `dfs([], empty set)`
 - return `res`
