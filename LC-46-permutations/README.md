@@ -72,3 +72,10 @@
     - insert `nums[0]` before index `i` of `perm_copy`
     - push `perm_copy` to `res`
 - return `res`
+
+## Solution 4: iterative backtracking (NeetCode's modded)
+
+- O(N^2 \* !N) T and O(!N) S solution
+- same approach as solution 3 but
+  - swap recursive call with outer loop for iterating thru `nums`
+  - reassign `perms` to new `perms` before iterating next number in outer loop
