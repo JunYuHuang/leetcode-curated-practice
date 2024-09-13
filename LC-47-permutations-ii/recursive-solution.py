@@ -1,22 +1,23 @@
-# O(N * N!) T and O(N * N!) S recursive backtracking solution (NeetCode's modded)
+# O(N * !N) T and O(N * !N) S recursive backtracking (NeetCode's modded)
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
-        res, N = [], len(nums)
-        nToCount = { n : 0 for n in nums }
-        for n in nums: nToCount[n] += 1
-        
-        def backtrack(perm):
-            if len(perm) == N:
+        N = len(nums)
+        res = []
+        count = {}
+        for n in nums:
+            count[n] = count.get(n, 0) + 1
+
+        def dfs(perm):
+            if len(perm) >= N:
                 res.append(perm[:])
                 return
-            for n in nToCount:
-                if nToCount[n] == 0: continue
-                perm.append(n)
-                nToCount[n] -= 1
-                backtrack(perm)
-                perm.pop()
-                nToCount[n] += 1
-        
-        backtrack([])
+            for n in count:
+                if count[n] > 0:
+                    perm.append(n)
+                    count[n] -= 1
+                    dfs(perm)
+                    perm.pop()
+                    count[n] += 1
+
+        dfs([])
         return res
-                    

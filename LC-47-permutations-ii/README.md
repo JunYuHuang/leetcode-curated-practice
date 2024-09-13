@@ -3,24 +3,34 @@
 ## General Notes
 
 - PEDAC: Problem
-  - input: 
-    - `nums`: int array of size in range \[1, 8] whose values are in range \[-10, 10] and may have duplicates
-  - output: 
-    - int matrix of permutations (array of int arrays)
-      - each perm is of size N
+  - input:
+    - `nums`: int array
+      - of size in range \[1, 8]
+      - of values in range \[-10, 10]
+      - may have duplicates
+  - output:
+    - `res`: array of int arrays
+      - each int array is a perm
+      - each int array is of size `nums.length`
 - PEDAC: Examples
 
 ## Solution 1: recursive backtracking (NeetCode's modded)
 
-- O(N * N!)? T & and O(N * N!) S solution
-- initialise empty `res` array
-- build `nToCount` hashmap that maps each unique int in `nums` to how many times it occurs
-- helper recursive function `backtrack(perm)`
-  - if perm reaches size N, push copy of it to res and return
-  - loop thru each int key in `nToCount`
-    - if `nToCount[n]` > 0,
-      - push `n` to `perm` and decrement `nToCount[n]`
-      - backtrack(perm)
-      - pop from `perm` and increment `nToCount[n]`
-- backtrack([])
-- return res
+- O(N \* N!) T and O(N \* N!) S solution
+- initialise variables
+  - `count`: hashmap that maps each unique int to its occurrences in `nums`
+  - `res`: empty array
+  - `N`: length of `nums`
+- define helper function `dfs(perm)`
+  - if length of `perm` >= `N`,
+    - push copy of `perm` to `res`
+    - return
+  - loop thru every key `n` in `count`,
+    - if `n`'s value > 0,
+      - push `n` to `perm`
+      - `count[n]--`
+      - `dfs(perm)`
+      - pop from `perm`
+      - `count[n]++`
+- `dfs([])`
+- return `res`
