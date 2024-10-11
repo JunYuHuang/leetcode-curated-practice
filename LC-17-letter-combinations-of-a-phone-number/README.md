@@ -10,20 +10,32 @@
   - output:
     - `res`: string array of all possible combinations that `digits` can represent
 - PEDAC: Examples
+  - '23'
+    - 'a'
+      - 'd'
+      - 'e'
+      - 'f'
+    - 'b'
+      - 'd'
+      - 'e'
+      - 'f' -> 'bf'
+  - ''
+    - -> []
 
 ## Solution 1: recursive backtracking (NeetCode's modded)
 
-- O(N \* 4^N) T and O(N \* 4^N) S solution
-- return empty array if `digits` is of length 0
-- initialise variables
-  - `digToChar`: hashmap that maps all valid string digits to a string of their associated alphabet chars
+- O(4^N \* N) T and O(4^N \* N) S solution
+- if `digits` is empty string,
+  - return empty array
+- set variables
+  - `digToChars`: hashmap that maps each numerical digit `2-9` to a string of alpha chars associated with it
   - `res`: empty array
-  - `N`: length of `digits`
 - define helper function `dfs(i, comb)`
-  - if `i` >= `N`
-    - push `comb` converted to string to `res`
-  - loop for each char `c` in `digToChar[digits[i]]`
-    - push `c` to `comb`
+  - if `i` is out-of-bounds,
+    - push `comb` as string to `res`
+    - return
+  - for each char `char` in the value mapped to key `digits[i]` in `digToChars`,
+    - push `char` to `comb`
     - `dfs(i + 1, comb)`
     - pop from `comb`
 - `dfs(0, [])`
