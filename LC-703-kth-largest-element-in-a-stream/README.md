@@ -17,26 +17,35 @@
     - for constructor `KthLargest(k, nums)`
       - returns an object or instance of the class `KthLargest`
     - for method `add(val)`
-      - returns the `k`th larget element in stream after `val` is added to the `nums` stream / array
+      - returns the `k`th largest element in stream after `val` is added to the `nums` stream / array
   - constraints
     - at most 10^4 calls will be made to `add()`
     - guaranteed that there will be >= `k` elements in `nums` when searching for the `kth` element
 - PEDAC: Examples
+  - k = 3, scores = [2, 4, 5, 8]
+    - add(3)
+      - scores = [2, 3, 4, 5, 8]
+      - -> 4
+    - add(5)
+      - scores = [2, 3, 4, 5, 5, 8]
+      - -> 5
+    - add(10)
+      - scores = [2, 3, 4, 5, 5, 8, 10]
+      - -> 5
 
-## Solution 1: min heap of size k (NeetCode's expl. modded)
+## Solution 1: K-sized min heap
 
-- T & S complexity breakdown
-  - `KthLargest()`: O(NLogN) T and O(N) S
-  - `add()`: O(MLogK) T and O(1) S
-- initialise variables
-  - `minHeap`: min heap initialised with elements from `nums` always kept at size <= `k`
-- when calling `KthLargest()` constructor,
- - pop elements from `minHeap` while size of `minHeap` > `k`
-- when calling `add()` method,
-  - if `minHeap` is of at least size `k` and its top (smallest) element's value >= `val`,
-    - don't need to push `val` to min heap
-    - return top (smallest) element of `minHeap`
-  - push `val` to heap
-  - while `minHeap`'s size is > `k`,
-    - pop from `minHeap`
-  - return top (smallest) element of `minHeap`
+- T and S complexity
+  - `KthLargest()`: O((N - K) \* LogN) T and O(N) S
+  - `add()`: O(LogK) T and O(1) S
+- `KthLargest(k, nums)`
+  - set `k` to instance int variable
+  - set `nums` to instance array variable
+  - convert `nums` to min heap
+  - while `nums`' size is greater than `k`,
+    - heap pop from `nums`
+- `add(val)`
+  - heap push `val` to `nums`
+  - if `nums`'s length is greater than `k`,
+    - heap pop from `nums`
+  - return top / root of `nums`

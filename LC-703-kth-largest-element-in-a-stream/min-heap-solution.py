@@ -1,19 +1,21 @@
-# O(NLogN) T and O(N) S `KthLargest()` and O(MLogK) T and O(1) S `add()` min heap solution (NeetCode's modded)
+# O((N - K) * LogK) T and O(K) S min heap solution (NeetCode's expl.)
+import heapq
+
 class KthLargest:
+
     def __init__(self, k: int, nums: List[int]):
         self.k = k
-        self.minHeap = nums
-        heapq.heapify(self.minHeap)
-        while len(self.minHeap) > self.k:
-            heapq.heappop(self.minHeap)
+        self.nums = nums
+        heapq.heapify(nums)
+        while len(self.nums) > self.k:
+            heapq.heappop(self.nums)
 
     def add(self, val: int) -> int:
-        if len(self.minHeap) == self.k and self.minHeap[0] >= val:
-            return self.minHeap[0]
-        heapq.heappush(self.minHeap, val)
-        while len(self.minHeap) > self.k:
-            heapq.heappop(self.minHeap)
-        return self.minHeap[0]
+        heapq.heappush(self.nums, val)
+        if len(self.nums) > self.k:
+            heapq.heappop(self.nums)
+        return self.nums[0]
+
 
 # Your KthLargest object will be instantiated and called as such:
 # obj = KthLargest(k, nums)
