@@ -4,7 +4,8 @@
 
 - PEDAC: Problem
   - input:
-    - `stones`: int array that represents stones of varying weights where `stones[i]` is the weight of the `i`th stone
+    - `stones`: int array that represents stones of varying weights
+      - `stones[i]` is the weight of the `i`th stone
       - of size in the range \[1, 30]
       - of values in the range \[1, 1000]
   - output:
@@ -14,15 +15,18 @@
     - continue while there are 2+ stones left
 - PEDAC: Examples
 
-## Solution 1: max heap
+## Solution 1: max heap (NeetCode's modded)
 
 - O(NLogN) T and O(N) S solution
-- initialise variables
-  - `maxHeap`: max heap initialised with `stones` array
-- while `maxHeap` has 2+ elements
-  - `stoneX` = pop from `maxHeap`
-  - `stoneY` = pop from `maxHeap`
-  - if `stoneX` == `stoneY`, continue
-  - `newStone` = `abs(stoneX - stoneY)`
-  - push `newStone` to `maxHeap`
-- return `maxHeap[0]` if `maxHeap` is non-empty else 0
+- make `stones` into a max heap
+- while `stones`'s length is greater than 1,
+  - set `stoneX` to heap popped int from `stones`
+  - set `stoneY` to heap popped int from `stones`
+  - if `stoneX` equals `stoneY`,
+    - continue
+  - set `newStone` to absolute value of result of `stoneX` - `stoneY`
+  - heap push `newStone` to `stones`
+- if `stones` is empty,
+  - return 0
+- else,
+  - return top / root of `stones`
