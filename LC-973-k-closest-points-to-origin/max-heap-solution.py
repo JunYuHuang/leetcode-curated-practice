@@ -1,14 +1,19 @@
-# O((N - K) * LogN) T and O(N) S max heap solution
+# O((N - K) * LogN) T and O(N) S solution
+from math import sqrt
+import heapq
+
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        distsAndPoints = [
+            [-1 * self.euclidDistance(p), p] for p in points
+        ]
+        heapq.heapify(distsAndPoints)
+        while len(distsAndPoints) > k:
+            heapq.heappop(distsAndPoints)
         res = []
-        maxHeap = []
-        for i in range(len(points)):
-            dist = -1 * (points[i][0] ** 2 + points[i][1] ** 2)
-            maxHeap.append([dist, i])
-        heapq.heapify(maxHeap)
-        while len(maxHeap) > k:
-            heapq.heappop(maxHeap)
-        for e in maxHeap:
-            res.append(points[e[1]])
+        for dist, point in distsAndPoints:
+            res.append(point)
         return res
+
+    def euclidDistance(self, point):
+        return sqrt(point[0] ** 2 + point[1] ** 2)
