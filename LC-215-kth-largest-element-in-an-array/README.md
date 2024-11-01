@@ -24,7 +24,7 @@
 ## Solution 2: min heap
 
 - O(N + (N - K) \* LogN) T and O(N) S solution
-- same approach as solution 1 but
-  - use min heap instead of max heap
-  - pop from heap N - `k` times
-- return top or first element of `minHeap`
+- convert `nums` to a min heap
+- loop until `nums`'s length is of size `k`,
+  - heap pop from `nums`
+- return top / root of min heap `nums`
