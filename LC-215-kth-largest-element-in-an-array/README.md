@@ -4,7 +4,7 @@
 
 - PEDAC: Problem
   - input:
-    - `nums`: int array
+    - `nums`: non-empty int array
       - of size in the range \[`k`, 10^5]
       - of values in the range \[-10^4, 10^4]
     - `k`: int in the range \[1, size of `nums`]
@@ -16,15 +16,14 @@
 
 ## Solution 1: max heap
 
-- O(N + KLogN) T and O(N) S solution
-- initialise variables
-  - `maxHeap`: set to `nums` by transformed into a max heap
-- pop from `maxHeap` `k` - 1 times
-- return top or first element of `maxHeap`
+- O(N + K \* LogN) T and O(N) S solution
+- convert `nums` to a max heap
+- heap pop from `nums` `k - 1` times
+- return top / root of max heap `nums`
 
 ## Solution 2: min heap
 
-- O(N + (N - K) * LogN) T and O(N) S solution
+- O(N + (N - K) \* LogN) T and O(N) S solution
 - same approach as solution 1 but
   - use min heap instead of max heap
   - pop from heap N - `k` times
