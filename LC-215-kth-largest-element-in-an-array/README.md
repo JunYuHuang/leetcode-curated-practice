@@ -7,6 +7,7 @@
     - `nums`: non-empty int array
       - of size in the range \[`k`, 10^5]
       - of values in the range \[-10^4, 10^4]
+        - can have duplicate values
     - `k`: int in the range \[1, size of `nums`]
   - output:
     - `res`: int that represents the `k`th largest element in `nums`
@@ -28,3 +29,10 @@
 - loop until `nums`'s length is of size `k`,
   - heap pop from `nums`
 - return top / root of min heap `nums`
+
+## Solution 3: sorting
+
+- O(NLogN) T and O(N) S solution
+- sort `nums` in ASC order
+- return element in `nums` at index `N` - `k`
+  - `N` is length of `nums`
